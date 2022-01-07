@@ -1,4 +1,4 @@
-import { Accounts } from './Accounts';
+import { Accounts } from '../accounts/Accounts';
 import './App.css';
 
 function App() {

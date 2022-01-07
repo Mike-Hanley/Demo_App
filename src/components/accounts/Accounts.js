@@ -5,9 +5,7 @@ import MaterialTable from 'material-table';
 import DeleteIcon from "@material-ui/icons/Delete";
 import SearchIcon from "@material-ui/icons/Search";
 import {ArrowUpward, ArrowBack, ArrowForward} from '@material-ui/icons'
-import SaveIcon from "@material-ui/icons/Save";
-import { Button } from "@material-ui/core";
-import { apiResponse } from './demo';
+
 
 export const Accounts = () => {
 
@@ -16,7 +14,7 @@ export const Accounts = () => {
     const [allAccounts, setAllAccounts] = useState({
         accounts: []
     });
-   
+
     useEffect(() => {
         setError(false);
 
@@ -39,16 +37,9 @@ export const Accounts = () => {
     }, [])
 
     return (
-        <>
-        <div className="App">
-      <h1>Accounts</h1>
-      {/* <a
-        target="_blank"
-        href="https://smartdevpreneur.com/intro-to-material-table-for-react/"
-      >
-        Click here for an intro to material-table
-      </a> */}
-      <div style={{ maxWidth: "100%", paddingTop: "12px" }} className={styles.table}>
+      <div className="App"> 
+       <h1 className={styles.title}>Accounts</h1>
+      <div style={{ height: `${window.innerHeight}px`, width: `${window.innerWidth}px`, overflowY: 'auto' }} className={styles.table}>
           {allAccounts.accounts.length > 0 && console.log(allAccounts.accounts[0]['data']['records'])}
           {allAccounts.accounts.length > 0 && 
         <MaterialTable 
@@ -58,18 +49,12 @@ export const Accounts = () => {
               field: "Id",
               align: "center",
               emptyValue: "N/A",
-              headerStyle: {
-                backgroundColor: "#01579b"
-              }
             },
             {
               title: "Name",
               field: "Name",
               align: "center",
               emptyValue: "N/A",
-              headerStyle: {
-                backgroundColor: "#01579b"
-              }
             },
             {
               title: "Annual Revenue",
@@ -77,45 +62,30 @@ export const Accounts = () => {
               type: "numeric",
               align: "center",
               emptyValue: "N/A",
-              headerStyle: {
-                backgroundColor: "#01579b"
-              }
             },
             {
                 title: "Website",
                 field: "Website",
                 align: "center",
                 emptyValue: "N/A",
-                headerStyle: {
-                  backgroundColor: "#01579b"
-                }
               },
               {
                 title: "Account Number",
                 field: "AccountNumber",
                 align: "center",
                 emptyValue: "N/A",
-                headerStyle: {
-                  backgroundColor: "#01579b"
-                }
               },
               {
                 title: "Rating",
                 field: "Rating",
                 align: "center",
                 emptyValue: "N/A",
-                headerStyle: {
-                  backgroundColor: "#01579b"
-                }
               },
               {
                 title: "Upsell Opportunity",
                 field: "UpsellOpportunity__c",
                 align: "center",
                 emptyValue: "N/A",
-                headerStyle: {
-                  backgroundColor: "#01579b"
-                }
               },
               {
                   title: "Contacts",
@@ -123,57 +93,110 @@ export const Accounts = () => {
                   align: "center",
                   emptyValue: "N/A",
                   type: "numeric",
-                  headerStyle: {
-                    backgroundColor: "#01579b"
-                  }
                 }
           ]}
-         
           data={allAccounts.accounts[0]['data']['records']}
-        //   pagination={}
-        //   title="Material-Table Demo"
           icons={{
             Clear: React.forwardRef((props, ref) => <DeleteIcon ref={ref}/>),
             Search: React.forwardRef((props, ref) => <SearchIcon ref={ref}/>),
             ResetSearch: React.forwardRef((props, ref) => <DeleteIcon ref={ref}/>),
-            // SortArrow: props => <ArrowDownward {...props} fontSize="small" />
             SortArrow: React.forwardRef((props, ref) => <ArrowUpward {...props} fontSize="small" ref={ref}/>),
             PreviousPage: React.forwardRef((props, ref) => <ArrowBack ref={ref}/>),
             NextPage: React.forwardRef((props, ref) => <ArrowForward ref={ref}/>)
-          }}
-        //   actions={[
-        //     {
-        //       icon: () => <SaveIcon />,
-        //       tooltip: "Save User",
-        //       onClick: (event, rowData) => alert("You saved " + rowData.name)
-        //     }
-        //   ]}
-          components={{
-            
-            // Action: (props) => (
-            //   <Button
-            //     onClick={(event) => props.action.onClick(event, props.data)}
-            //     color="primary"
-            //     variant="text"
-            //     style={{ textTransform: "none" }}
-            //     size="small"
-            //   >
-            //     Save
-            //   </Button>
-            // )
+          }}  
+          detailPanel={(rowData) => {
+            return (
+              <div id="project-features">
+                <MaterialTable
+                  
+                  title="Contacts"
+                  columns={[
+                    {
+                      title: "Id",
+                      field: "Id",
+                      align: "center",
+                      emptyValue: "N/A",
+                    },
+                    {
+                      title: "Name",
+                      field: "Name",
+                      align: "center",
+                      emptyValue: "N/A",
+                    },
+                    {
+                      title: "Title",
+                      field: "Title",
+                      align: "center",
+                      emptyValue: "N/A",
+                    },
+                    {
+                        title: "Phone",
+                        field: "Phone",
+                        align: "center",
+                        emptyValue: "N/A",
+                      },
+                      {
+                        title: "Department",
+                        field: "Department",
+                        align: "center",
+                        emptyValue: "N/A",
+                      }, 
+                      {
+                        title: "Email",
+                        field: "Email",
+                        align: "center",
+                        emptyValue: "N/A",
+                      }                
+                    ]}
+                    data={allAccounts.accounts[0]['data']['records'].find(record => record.Id === rowData.Id)['Contacts']['records']}
+                    options={{
+                      headerStyle: {
+                        backgroundColor: "#ff9b5f",
+                        fontSize: "1.2em",  
+                        fontFamily: "sans-serif", 
+                        paddingTop: "4px",   
+                        paddingBottom: "4px",       
+                        color: "#FFF",
+                      },
+                      pageSize: allAccounts.accounts[0]['data']['records'].find(record => record.Id === rowData.Id)['Contacts']['totalSize'],
+                    pageSizeOptions: [1, 2, 5, 10, 20],
+                    toolbar: true,
+                    paging: true,
+                      paginationType: "normal",
+                      rowStyle: {
+                        fontSize: ".95em",
+                        fontFamily: "sans-serif"
+                      }
+                    }}
+                    />    
+              </div>
+            )
           }}
           options={{
             headerStyle: {
               backgroundColor: "#01579b",
-              color: "#FFF"
+              fontSize: "1.2em", 
+              fontFamily: "sans-serif",           
+              color: "#FFF",
             },
-            showFirstLastPageButtons: false,
+            pageSize: 10,
+          pageSizeOptions: [5, 10, 20],
+          toolbar: true,
+          paging: true,
             paginationType: "normal",
+            rowStyle: {
+              fontSize: ".95em",
+              fontFamily: "sans-serif"
+            },
+            showTitle: false
           }}
         />}
       </div>
+    
+       
     </div>
-        </>
+      
+         
     );
 };
 
