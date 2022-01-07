@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Account.module.css";
-import MaterialTable, { MTableToolbar } from "material-table";
+import MaterialTable from "material-table";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SearchIcon from "@material-ui/icons/Search";
 import { ArrowUpward, ArrowBack, ArrowForward } from "@material-ui/icons";
-import Typography from "@material-ui/core/Typography";
 
 
 export const Accounts = () => {
