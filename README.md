@@ -1,12 +1,12 @@
 ## Demo App
 
-##Description
+## Description
 
 *  An app that displays key account data for sales purposes.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, run:
 
 ### `npm start`
 
