@@ -14,6 +14,23 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+## Install Node.js
+
+Download the LTS version of Node. Confirm installatin worked by typing: 'node -v' into GitBash.
+
+## To set up the Demo App:
+
+The Demo App can be run by navigating to the Demo App directory and running: 'npm start' in GitBash. Before
+running the app, execute the following steps to install the neccessary packages and depenencies. 
+
+## Available Scripts
+
+In the project directory, run:
+
+### `npm install`
+
+Installs the neccessary dependencies to run the app.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
