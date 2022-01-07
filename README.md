@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+## Demo App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Description
+
+*  An app that displays key account data for sales purposes.
 
 ## Available Scripts
 
