@@ -40,8 +40,8 @@ export const Accounts = () => {
       <h1 className={styles.title}>Accounts</h1>
       <div
         style={{
-          height: `${window.innerHeight}px`,
-          width: `${window.innerWidth}px`,
+          height: `${window.outerHeight}px`,
+          width: `${window.outerWidth}px`,
           overflowY: "auto",
         }}
       >
